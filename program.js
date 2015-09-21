@@ -1,5 +1,7 @@
-function upperCaser(input) {
-    return input.toUpperCase();
+function repeat(operation, num) {
+    for(var i = 0; i < num; i++) {
+        operation();
+    }
 }
 
-module.exports = upperCaser;
+module.exports = repeat;
