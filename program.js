@@ -1,7 +1,7 @@
-function repeat(operation, num) {
-    for(var i = 0; i < num; i++) {
-        operation();
-    }
+function doubleAll(numbers) {
+    return numbers.map(function(num) {
+        return num * 2;
+    });
 }
 
-module.exports = repeat;
+module.exports = doubleAll;
