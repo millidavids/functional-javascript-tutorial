@@ -1,7 +1,9 @@
-function doubleAll(numbers) {
-    return numbers.map(function(num) {
-        return num * 2;
+function getShortMessages(messages) {
+    return messages.filter(function(thing){
+        return thing.message.length < 50;
+    }).map(function(thing){
+        return thing.message;
     });
 }
 
-module.exports = doubleAll;
+module.exports = getShortMessages;
