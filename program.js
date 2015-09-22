@@ -1,9 +1,11 @@
-function getShortMessages(messages) {
-    return messages.filter(function(thing){
-        return thing.message.length < 50;
-    }).map(function(thing){
-        return thing.message;
-    });
+function checkUsersValid(goodUsers) {
+    return function allUsersValid(submittedUsers) {
+        return submittedUsers.every(function(submittedUser){
+            return goodUsers.some(function(goodUser){
+                return goodUser.id === submittedUser.id;
+            });
+        });
+    };
 }
 
-module.exports = getShortMessages;
+module.exports = checkUsersValid;
