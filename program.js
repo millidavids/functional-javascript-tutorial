@@ -1,11 +1,8 @@
-function checkUsersValid(goodUsers) {
-    return function allUsersValid(submittedUsers) {
-        return submittedUsers.every(function(submittedUser){
-            return goodUsers.some(function(goodUser){
-                return goodUser.id === submittedUser.id;
-            });
-        });
-    };
+function countWords(inputWords) {
+    return inputWords.reduce(function(hash, word){
+        hash[word] = ++hash[word] || 1;
+        return hash;
+    }, {});
 }
 
-module.exports = checkUsersValid;
+module.exports = countWords; 
