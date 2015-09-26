@@ -1,19 +1,13 @@
-function repeat(operation, num) {
-  return function() {
-    if (num <= 0) return;
-    operation();
-    return repeat(operation, --num);
-  };
-}
-
-function trampoline(fn) {
-  while(fn && typeof fn === 'function') {
-    fn = fn();
-  }
-}
-
-module.exports = function(operation, num) {
-  trampoline(function() {
-    return repeat(operation, num)
+function loadUsers(userIds, load, done) {
+  var completed = 0;
+  var users = [];
+  userIds.forEach(function(id, index) {
+    load(id, function(user) {
+        users[index] = user;
+        if (++completed === userIds.length) return done(users);
+    });
   });
-};
+  return users
+}
+
+module.exports = loadUsers
