@@ -1,14 +1,14 @@
-module.exports = function Spy(target, method) {
-    var originalFunction = target[method];
-
-    var result = {
-        count: 0
+function repeat(operation, num) {
+    if (num <= 0) return;
+    operation();
+    
+    if (num % 10 === 0) {
+        setTimeout(function() {
+            repeat(operation, --num);
+        })
+    } else {
+        repeat(operation, --num);
     }
-
-    target[method] = function() {
-        result.count++;
-        return originalFunction.apply(this, arguments);
-    }
-
-    return result;
 }
+
+module.exports = repeat;
