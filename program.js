@@ -1,7 +1,9 @@
-function duckCount() {
-    return Array.prototype.slice.call(arguments).filter(function(obj){
-        return Object.prototype.hasOwnProperty.call(obj, 'quack');
-    }).length;
+var slice = Array.prototype.slice
+
+function logger(namespace) {
+    return function() {
+        console.log.apply(console, [namespace].concat(slice.call(arguments)))
+    }
 }
 
-module.exports = duckCount; 
+module.exports = logger
