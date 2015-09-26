@@ -10,4 +10,4 @@ function loadUsers(userIds, load, done) {
   return users
 }
 
-module.exports = loadUsers
+module.exports = loadUsers;
