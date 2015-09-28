@@ -1,13 +1,12 @@
-function loadUsers(userIds, load, done) {
-  var completed = 0;
-  var users = [];
-  userIds.forEach(function(id, index) {
-    load(id, function(user) {
-        users[index] = user;
-        if (++completed === userIds.length) return done(users);
+function getDependencies(mod, result) {
+    result = result || [];
+    var dependencies = mod && mod.dependencies || [];
+    Object.keys(dependencies).forEach(function(dep){
+        var key = dep + '@' + mod.dependencies[dep].version;
+        if (result.indexOf(key) === -1) result.push(key);
+        getDependencies(mod.dependencies[dep], result);
     });
-  });
-  return users
+    return result.sort();
 }
 
-module.exports = loadUsers;
+module.exports = getDependencies;
